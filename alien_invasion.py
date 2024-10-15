@@ -2,6 +2,7 @@ import sys
 import pygame
 
 from settings import Settings
+from ship import Ship
 
 class AlienInvasion:
     """Загальний клас, що керує ресурсами та поведінкою гри."""
@@ -14,6 +15,8 @@ class AlienInvasion:
             (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
 
+        self.ship = Ship(self)
+
     def run_game(self):
         """Розпочати головний цикл гри."""
         while True:
@@ -24,6 +27,7 @@ class AlienInvasion:
 
             # Наново перемалювати екран на кожній ітерації циклу
             self.screen.fill(self.settings.bg_color)
+            self.ship.blitme()
 
             # Показати останій намальований екран.
             pygame.display.flip()
