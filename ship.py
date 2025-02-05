@@ -18,4 +18,4 @@ class Ship:
     def blitme(self):
         """Намалювати корабль у його поточному розташуванні."""
         self.screen.blit(self.image, self.rect)
-        [[["sdada"]]]
+
