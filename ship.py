@@ -6,6 +6,7 @@ class Ship:
     def __init__(self, ai_game):
         """Ініціалізувати корабель та задати його початкову позицію."""
         self.screen = ai_game.screen
+        self.settings = ai_game.settings
         self.screen_rect = ai_game.screen.get_rect()
 
         # Завантажити зображення корабля та отримати його rect
@@ -14,6 +15,26 @@ class Ship:
 
         # Створювати кожен новий корабель внизу екрана, по центру
         self.rect.midbottom = self.screen_rect.midbottom
+
+        # Зберегти десяткове значення для позиції корабля по горизонталі.
+        self.x = float(self.rect.x)
+
+        # Індикатор руху
+        self.moving_right = False
+        self.moving_left = False
+
+    def update(self):
+        """Оновити поточну позицюі корабля на основі
+        індикатора руху.
+        """
+        #Оновити значення ship.x, а не rect.
+        if self.moving_right:
+            self.x += self.settings.ship_speed
+        if self.moving_left:
+            self.x -= self.settings.ship_speed
+
+        #Оновити об'єкт rect з self.x.
+        self.rect.x = self.x
 
     def blitme(self):
         """Намалювати корабль у його поточному розташуванні."""
